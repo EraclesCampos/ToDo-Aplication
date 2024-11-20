@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tareas</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <img src="checked.png" alt="completadas" title="completadas" class="completadas">
+    <div class="global-container">
+        <h1 class="title">Tu lista de tareas</h1>
+        <div class="add-container">
+            <input class="add" type="button" value="+" title="agregar">
+        </div>
+        <div class="agregar hidden">
+            <input class="input-agregar" type="text" placeholder="Ingresa aqui la tarea">
+            <input class="btn-agregar" type="button" value="Agregar tarea">
+        </div>
+        <div class="tareas-container">
+        
+        </div>
+    </div>
+    <div class="add-modal modal">
+        <form class="form-modal-container">
+            <h2>Agregar tarea detallada</h2>
+            <div>
+                <label for="add-input">Nombre de tarea <span class="asterisco">*</span></label>
+                <input type="text" name="" id="add-input" class="data-form" autocomplete="off" required>
+            </div>
+            <div>
+                <label for="descripcion-input">Descripcion</label>
+                <textarea name="" id="descripcion-input"class="data-form" ></textarea>
+            </div>
+            <div>
+                <label for="date-input">Agregar recordatorio</label>
+                <input type="datetime-local" name="" id="date-input"class="data-form" min="">
+            </div>
+            <div class="btns-form">
+                <input type="submit" value="Agregar" class="addForm">
+                <input type="button" value="Cancelar" class="cancelForm">
+            </div>
+        </form>
+    </div>
+    <div class="details-task-modal modal">
+        <div class="details-task-container">
+            <img class="closeModal" src="close.png" title="cerrar" onclick="closeModal(this)">
+            <h2>Detalles</h2>
+            <div>
+                <div>
+                    <h4>Tarea</h4>
+                    <p class="taskName"></p>
+                </div>
+                <div>
+                    <h4>Descripcion</h4>
+                    <p class="taskDescription"></p>
+                </div>
+                <div>
+                    <h4>Fecha</h4>
+                    <p class="taskDate"></p>
+                </div>   
+            </div>
+        </div>
+    </div>
+    <div class="confirm-modal-complete modal">
+        <div class="confirm-container-complete">
+            <h1>¿Seguro que deseas completar esta tarea?</h1>
+            <div>
+                <button class="btn-complete-confirm btn-confirm-modal">Confrimar</button>
+                <button class="btn-complete-cancel btn-cancel-modal">Cancelar</button>
+            </div>
+        </div>
+    </div>
+    <div class="confirm-modal-delete modal">
+        <div class="confirm-container-delete">
+            <h1>¿Seguro que deseas eliminar esta tarea?</h1>
+            <div>
+                <button class="btn-delete-confirm btn-confirm-modal">Confrimar</button>
+                <button class="btn-delete-cancel btn-cancel-modal">Cancelar</button>
+            </div>
+        </div>
+    </div>
+    <div class="completed-modal modal">
+        <div class="completed-container">
+            <img class="closeModal" src="close.png" title="cerrar" onclick="closeModal(this)">
+            <h2>Tareas completadas</h2>
+            <div class="tareas-completadas-container">
+                <p class="text-footer">Historial de las ultimas 10 tareas completadas</p> 
+
+            </div>  
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>

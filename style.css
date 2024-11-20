@@ -1,0 +1,294 @@
+body{
+    background-color: #ccc;
+    margin: 0;
+    padding: 0 20px;
+    font-family: sans-serif;
+}
+.hidden{
+    display: none;
+}
+.completadas{
+    width: 30px;
+    background: none;
+    position: absolute;
+    right: 30px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+.completadas:hover{
+    background: #ddd;
+}
+.completadas:active{
+    background: #fff;
+}
+.global-container{
+    position: relative;
+    background: #fff;
+    max-width: 70%;
+    margin: auto;
+    text-align: center;
+    border-radius: 5px;
+    box-shadow: 0 0 5px 5px grey;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+}
+.title{
+    margin: 0;
+    padding: 30px 0;
+}
+.add-container{
+    display: flex;
+    justify-content: end;
+}
+.add{
+    background: green;
+    color: white;
+    border: 1px solid black;
+    cursor: pointer;
+    font-size: 23px;
+    padding-top: 0;
+    padding-bottom: 0;
+    margin-right: 50px;
+}
+.add:hover{
+    background: rgb(0, 168, 0);
+}
+.add:active{
+    background: green;
+}
+
+.input-agregar{
+    border: none;
+    border-bottom: 2px solid green;
+    background: none;
+    outline: none;
+    transition: border-bottom .3s;
+}
+.input-agregar:focus{
+    border-bottom: 2px solid rgb(0, 192, 0);
+}
+.btn-agregar{
+    border: none;
+    background: #ddd;
+    cursor: pointer;
+    border: none;
+}
+/* .btn-agregar:hover{
+    background: #ddd;
+} */
+.btn-agregar:active{
+    background: #fff;
+}
+.tareas-container{
+    width: 50%;
+    margin: auto;
+}
+.tarea{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    border-bottom: 1px solid grey;
+}
+.h3-container{
+    /* max-width: 50%; */
+    width: 50%;
+}
+.h3-container-completed{
+    width: 100%;
+}
+.check-delete{
+    display: flex;
+    align-items: center;
+    margin: auto;
+}
+.check-delete > input{
+    font-size: 20px;
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+.check:hover{
+    filter: drop-shadow(0 0 5px rgb(20, 111, 84));
+}
+.delete:hover{
+    filter: drop-shadow(0 0 5px rgb(107, 16, 16));
+}
+.delete:active, .check:active{
+    filter: drop-shadow(0 0 5px rgb(255, 255, 255));
+}
+.details{
+    border: none;
+    background: transparent;
+    font-size: 22px;
+    color: rgb(54, 158, 203);
+    cursor: pointer;
+}
+
+/* --modal-addTasks-- */
+.form-modal-container{
+    position: relative;
+    max-width: 500px;
+    width: 500px;
+    height: 400px;
+    background: #fff;
+    text-align: center;
+    border-radius: 5px;
+    box-shadow: 0 0 5px 5px grey;
+    /* margin-bottom: 30px; */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+.form-modal-container h2{
+    margin: 30px 30px;
+    display: inline-block;
+}
+.asterisco{
+    color: red;
+}
+.form-modal-container >div:not(:last-child){
+    display: flex;
+    flex-direction: column;
+    max-width: 300px;
+    min-width: none;width: 300px;
+    text-align: start;
+}
+.form-modal-container > div:not(:last-child) > input:focus,textarea:focus{
+    border-bottom: 2px solid rgb(0, 192, 0);
+}
+textarea{
+    max-width: 300px;
+    max-height: 100px;
+}
+.form-modal-container > div:not(:last-child) > input,textarea{
+    border: none;
+    border-bottom: 2px solid green;
+    outline: none;
+}
+.btns-form{
+    display: flex;
+    justify-content: space-between;
+    width: 50%;
+}
+.btns-form > input, .btn-confirm-modal, .btn-cancel-modal{
+    border: 1px solid #000000;
+    border-radius: 5px;
+    background-color: transparent;
+    padding: 6px 15px;
+    cursor: pointer;
+    font-family: arial;
+}
+.btns-form > input:nth-child(1), .btn-confirm-modal{
+    background: rgb(37, 184, 37);
+}
+.btns-form > input:nth-child(2), .btn-cancel-modal{
+    background: rgb(224, 65, 65);
+}
+.btns-form > input:nth-child(1):active, .btn-confirm-modal:active{
+    background: rgb(45, 225, 45);
+}
+.btns-form > input:nth-child(2):active, .btn-cancel-modal:active{
+    background: rgb(133, 35, 35);
+}
+
+/* --modal tasksDetails-- */
+.details-task-container{
+    position: relative;
+    max-width: 500px;
+    width: 400px;
+    min-height: 400px;
+    background: #fff;
+    text-align: center;
+    border-radius: 5px;
+    box-shadow: 0 0 5px 5px grey;
+    /* margin-bottom: 30px; */
+    /* display: flex; */
+    flex-direction: column;
+    /* justify-content: space-around; */
+    align-items: center;
+}
+.details-task-container > div:first-of-type{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+.details-task-container > div:first-of-type > div{
+    width: 300px;
+    max-width: 100%;
+    text-align: start;
+}
+
+/* --modal-tasksCompleted */
+.modal{
+    position: fixed;
+    top: 0; left: 0;
+    background: rgba(0, 0, 0, 0.5);
+    width: 100%;
+    height: 100%;
+    display: none;
+}
+.modal.showed{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.completed-container{
+    position: relative;
+    background: #fff;
+    max-width: 70%;
+    max-height: 80%;
+    text-align: center;
+    border-radius: 5px;
+    box-shadow: 0 0 5px 5px grey;
+    margin-bottom: 30px;
+    overflow-y: scroll;
+    scrollbar-color: transparent;
+}
+.completed-container::-webkit-scrollbar {
+    display: none;
+  }
+.completed-container h2{
+    margin: 30px 30px;
+    display: inline-block;
+}
+.closeModal{
+    position: absolute;
+    width: 15px;
+    margin: 0;
+    right: 12px;top: 12px;
+    cursor: pointer;
+}
+.tareas-completadas-container{
+    position: relative;
+}
+.text-footer{
+    position: fixed;
+    bottom: 0;
+}
+
+/* --confirm-modal-completed-- */
+.confirm-container-complete, .confirm-container-delete{
+    background: #fff;
+    padding: 20px;
+}
+.confirm-container-delete div, .confirm-container-complete div{
+    width: 50%;
+    display: flex;
+    justify-content: space-between;
+    margin: auto;
+}
+
+/* --media-querys-- */
+
+@media(max-width:565px){
+    .add{
+        margin-right: 20px;
+    }
+    .h3-container{
+        width: 100%;
+    }
+}
+
