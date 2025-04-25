@@ -11,19 +11,19 @@
     <img src="checked.png" alt="completadas" title="completadas" class="completadas">
     <div class="global-container">
         <h1 class="title">Tu lista de tareas</h1>
-        <div class="add-container">
-            <input class="add" type="button" value="+" title="agregar">
-        </div>
         <div class="agregar hidden">
             <input class="input-agregar" type="text" placeholder="Ingresa aqui la tarea">
             <input class="btn-agregar" type="button" value="Agregar tarea">
         </div>
         <div class="tareas-container">
-        
+            <!-- Las tareas se incertaran aqui dinamicamente -->
+        </div>
+        <div class="add-container">
+            <button class="add" title="agregar"><img src="add.png" alt="agregar"></button>
         </div>
     </div>
     <div class="add-modal modal">
-        <form class="form-modal-container">
+        <form class="form-modal-container modal-animation">
             <h2>Agregar tarea</h2>
             <div>
                 <label for="add-input">Nombre de tarea <span class="asterisco">*</span></label>
@@ -44,7 +44,7 @@
         </form>
     </div>
     <div class="details-task-modal modal">
-        <div class="details-task-container">
+        <div class="details-task-container modal-animation">
             <img class="closeModal" src="close.png" title="cerrar" onclick="closeModal(this)">
             <h2>Detalles</h2>
             <div>
@@ -64,7 +64,7 @@
         </div>
     </div>
     <div class="confirm-modal-complete modal">
-        <div class="confirm-container-complete">
+        <div class="confirm-container-complete modal-animation">
             <h1>¿Seguro que deseas completar esta tarea?</h1>
             <div>
                 <button class="btn-complete-confirm btn-confirm-modal">Confrimar</button>
@@ -73,7 +73,7 @@
         </div>
     </div>
     <div class="confirm-modal-delete modal">
-        <div class="confirm-container-delete">
+        <div class="confirm-container-delete modal-animation">
             <h1>¿Seguro que deseas eliminar esta tarea?</h1>
             <div>
                 <button class="btn-delete-confirm btn-confirm-modal">Confrimar</button>
@@ -82,7 +82,7 @@
         </div>
     </div>
     <div class="completed-modal modal">
-        <div class="completed-container">
+        <div class="completed-container modal-animation">
             <img class="closeModal" src="close.png" title="cerrar" onclick="closeModal(this)">
             <h2>Tareas completadas</h2>
             <div class="tareas-completadas-container">

@@ -160,9 +160,10 @@ function getTasks(){
                         <h3>${task.text}</h3>
                     </div>
                     <div class="check-delete">
-                        <input class="check"type="button" value="✔️" onclick="markCompleted(this)">
-                        <input class="delete" type="button" value="❌" onclick="delTasks(this,false)">    
-                        <button class="details" onclick="detailsTask(this)"><i class="fa-solid fa-circle-info"></i></button>
+                        <button class='check' onclick="markCompleted(this)"><img src='check.png'/></button>   
+                        <button class="delete" onclick="delTasks(this,false)"><img src='delete.png'/></button>
+                        <button class='edit'><img src='edit.png'/></button>
+                        <button class="details" onclick="detailsTask(this)"><img src='info.png'/></button>
                     </div>
                 </div>`    
             }

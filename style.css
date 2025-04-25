@@ -1,5 +1,5 @@
 body{
-    background-color: #ccc;
+    background-color: #c9e9f4;
     margin: 0;
     padding: 0 20px;
     font-family: sans-serif;
@@ -24,11 +24,11 @@ body{
 .global-container{
     position: relative;
     background: #fff;
-    max-width: 70%;
+    max-width: 60%;
     margin: auto;
     text-align: center;
-    border-radius: 5px;
-    box-shadow: 0 0 5px 5px grey;
+    border-radius: 10px;
+    box-shadow: 0 0 4px 1px rgb(186, 186, 186);
     margin-top: 30px;
     margin-bottom: 30px;
     padding-bottom: 20px;
@@ -39,23 +39,27 @@ body{
 }
 .add-container{
     display: flex;
-    justify-content: end;
+    justify-content: center;
+    margin-top: 30px;
 }
 .add{
-    background: green;
-    color: white;
-    border: 1px solid black;
+    background: none;
+    border: none;
     cursor: pointer;
-    font-size: 23px;
     padding-top: 0;
     padding-bottom: 0;
-    margin-right: 50px;
 }
 .add:hover{
-    background: rgb(0, 168, 0);
+    filter: drop-shadow(0 0 5px rgb(20, 111, 84));
 }
 .add:active{
-    background: green;
+    filter: drop-shadow(0 0 5px rgb(255, 255, 255));
+}
+.add img{
+    width: 50px;
+    border: none;
+    background: none;
+    cursor: pointer;
 }
 
 .input-agregar{
@@ -83,16 +87,24 @@ body{
 .tareas-container{
     width: 50%;
     margin: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
 .tarea{
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
-    border-bottom: 1px solid grey;
+    padding: 0 0 0 10px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background-color: #fff;
+    box-shadow: 0px 1px 4px 0.2px rgb(186, 186, 186);
 }
 .h3-container{
     /* max-width: 50%; */
     width: 50%;
+    overflow-x: auto;
 }
 .h3-container-completed{
     width: 100%;
@@ -102,8 +114,13 @@ body{
     align-items: center;
     margin: auto;
 }
-.check-delete > input{
-    font-size: 20px;
+.check-delete button{
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+.check-delete img{
+    width: 25px;
     border: none;
     background: none;
     cursor: pointer;
@@ -114,16 +131,16 @@ body{
 .delete:hover{
     filter: drop-shadow(0 0 5px rgb(107, 16, 16));
 }
-.delete:active, .check:active{
+.edit:hover{
+    filter: drop-shadow(0 0 5px rgb(159, 159, 159));
+}
+.details:hover{
+    filter: drop-shadow(0 0 5px rgb(52, 152, 214));
+}
+.delete:active, .check:active, .edit:active, .details:active{
     filter: drop-shadow(0 0 5px rgb(255, 255, 255));
 }
-.details{
-    border: none;
-    background: transparent;
-    font-size: 22px;
-    color: rgb(54, 158, 203);
-    cursor: pointer;
-}
+
 
 /* --modal-addTasks-- */
 .form-modal-container{
@@ -229,6 +246,7 @@ textarea{
     width: 100%;
     height: 100%;
     display: none;
+    z-index: 1000;
 }
 .modal.showed{
     display: flex;
@@ -281,6 +299,10 @@ textarea{
     margin: auto;
 }
 
+.modal-animation{
+    animation: popup .3s ease-in-out;
+}
+
 /* --media-querys-- */
 
 @media(max-width:565px){
@@ -292,3 +314,8 @@ textarea{
     }
 }
 
+/* --Animaciones-- */
+@keyframes popup {
+    0% { transform: scale(0.8); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
