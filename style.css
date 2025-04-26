@@ -315,8 +315,19 @@ textarea{
 .confirm-modal{
     text-align: center;
 }
+.confirm-modal img{
+    width: 50px;
+    margin: 0 auto;
+}
 .btn-confirm-modal{
     width: auto;
+}
+.btn-delete-confirm{
+    background-color: rgb(213, 0, 0);
+}
+
+.btn-delete-confirm:active{
+    background-color: rgb(186, 1, 1);
 }
 
 .modal-animation{
