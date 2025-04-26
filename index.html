@@ -9,13 +9,9 @@
     <link rel="shortcut icon" href="checked.ico" type="image/x-icon">
 </head>
 <body>
-    <img src="checked.png" alt="completadas" title="completadas" class="completadas">
     <div class="global-container">
+        <img src="checked.png" alt="completadas" title="completadas" class="completadas">
         <h1 class="title">Tu lista de tareas</h1>
-        <div class="agregar hidden">
-            <input class="input-agregar" type="text" placeholder="Ingresa aqui la tarea">
-            <input class="btn-agregar" type="button" value="Agregar tarea">
-        </div>
         <div class="tareas-container">
             <!-- Las tareas se incertaran aqui dinamicamente -->
         </div>
@@ -25,9 +21,9 @@
     </div>
     <div class="add-modal modal">
         <form class="form-modal-container modal-animation">
-            <h2>Agregar tarea</h2>
+            <h2>Agregar nueva tarea</h2>
             <div>
-                <label for="add-input">Nombre de tarea <span class="asterisco">*</span></label>
+                <label for="add-input">Titulo</label>
                 <input type="text" name="" id="add-input" class="data-form" autocomplete="off" required>
             </div>
             <div>
@@ -39,8 +35,29 @@
                 <input type="datetime-local" name="" id="date-input"class="data-form" min="">
             </div>
             <div class="btns-form">
-                <input type="submit" value="Agregar" class="addForm">
                 <input type="button" value="Cancelar" class="cancelForm">
+                <input type="submit" value="Agregar" class="addForm">
+            </div>
+        </form>
+    </div>
+    <div class="edit-modal modal">
+        <form class="form-modal-container edit-form modal-animation">
+            <h2>Editar tarea</h2>
+            <div>
+                <label for="add-input">Titulo</label>
+                <input type="text" name="" id="add-input-edit" class="data-form" autocomplete="off" required>
+            </div>
+            <div>
+                <label for="descripcion-input">Descripcion</label>
+                <textarea name="" id="descripcion-input-edit"class="data-form" ></textarea>
+            </div>
+            <div>
+                <label for="date-input">Agregar recordatorio</label>
+                <input type="datetime-local" name="" id="date-input-edit" class="data-form" min="">
+            </div>
+            <div class="btns-form">
+                <input type="button" value="Cancelar" class="cancelForm">
+                <input type="submit" value="Aceptar" class="addForm">
             </div>
         </form>
     </div>
@@ -65,20 +82,20 @@
         </div>
     </div>
     <div class="confirm-modal-complete modal">
-        <div class="confirm-container-complete modal-animation">
+        <div class="confirm-container-complete confirm-modal modal-animation">
             <h1>¿Seguro que deseas completar esta tarea?</h1>
             <div>
-                <button class="btn-complete-confirm btn-confirm-modal">Confrimar</button>
                 <button class="btn-complete-cancel btn-cancel-modal">Cancelar</button>
+                <button class="btn-complete-confirm btn-confirm-modal">Confrimar</button>
             </div>
         </div>
     </div>
-    <div class="confirm-modal-delete modal">
-        <div class="confirm-container-delete modal-animation">
+    <div class="confirm-modal-delete  modal">
+        <div class="confirm-container-delete confirm-modal modal-animation">
             <h1>¿Seguro que deseas eliminar esta tarea?</h1>
             <div>
-                <button class="btn-delete-confirm btn-confirm-modal">Confrimar</button>
                 <button class="btn-delete-cancel btn-cancel-modal">Cancelar</button>
+                <button class="btn-delete-confirm btn-confirm-modal">Confrimar</button>
             </div>
         </div>
     </div>

@@ -11,9 +11,11 @@ body{
     width: 30px;
     background: none;
     position: absolute;
-    right: 30px;
+    right: 10px;
+    top: 10px;
     border-radius: 50%;
     cursor: pointer;
+    z-index: 1000;
 }
 .completadas:hover{
     background: #ddd;
@@ -36,6 +38,7 @@ body{
 .title{
     margin: 0;
     padding: 30px 0;
+    color: #333;
 }
 .add-container{
     display: flex;
@@ -95,7 +98,7 @@ body{
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
-    padding: 0 0 0 10px;
+    padding: 0 10px;
     border: 1px solid #ddd;
     border-radius: 10px;
     background-color: #fff;
@@ -105,6 +108,9 @@ body{
     /* max-width: 50%; */
     width: 50%;
     overflow-x: auto;
+}
+.h3-container h3{
+    color: #333;
 }
 .h3-container-completed{
     width: 100%;
@@ -145,12 +151,13 @@ body{
 /* --modal-addTasks-- */
 .form-modal-container{
     position: relative;
+    padding-bottom: 20px;
     max-width: 500px;
     width: 500px;
     height: 400px;
     background: #fff;
     text-align: center;
-    border-radius: 5px;
+    border-radius: 10px;
     box-shadow: 0 0 5px 5px grey;
     /* margin-bottom: 30px; */
     display: flex;
@@ -162,9 +169,6 @@ body{
     margin: 30px 30px;
     display: inline-block;
 }
-.asterisco{
-    color: red;
-}
 .form-modal-container >div:not(:last-child){
     display: flex;
     flex-direction: column;
@@ -173,21 +177,24 @@ body{
     text-align: start;
 }
 .form-modal-container > div:not(:last-child) > input:focus,textarea:focus{
-    border-bottom: 2px solid rgb(0, 192, 0);
+    border: 1.5px solid #35ae71;
 }
 textarea{
     max-width: 300px;
     max-height: 100px;
 }
 .form-modal-container > div:not(:last-child) > input,textarea{
-    border: none;
-    border-bottom: 2px solid green;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px 5px;
     outline: none;
 }
 .btns-form{
     display: flex;
-    justify-content: space-between;
-    width: 50%;
+    justify-content: start;
+    flex-direction: row-reverse;
+    gap: 10px;
+    width: 300px;
 }
 .btns-form > input, .btn-confirm-modal, .btn-cancel-modal{
     border: 1px solid #000000;
@@ -197,17 +204,22 @@ textarea{
     cursor: pointer;
     font-family: arial;
 }
-.btns-form > input:nth-child(1), .btn-confirm-modal{
-    background: rgb(37, 184, 37);
+.btns-form > input:nth-child(1), .btn-cancel-modal{
+    background: transparent;
+    border: 1.5px solid #ccc;
+    color: #333;
 }
-.btns-form > input:nth-child(2), .btn-cancel-modal{
-    background: rgb(224, 65, 65);
+.btns-form > input:nth-child(2), .btn-confirm-modal{
+    background: #35ae71;
+    border: none;
+    color: #fff;
+    width: 40%;
 }
-.btns-form > input:nth-child(1):active, .btn-confirm-modal:active{
-    background: rgb(45, 225, 45);
+.btns-form > input:nth-child(1):active, .btn-cancel-modal:active{
+    background: #ccc;
 }
-.btns-form > input:nth-child(2):active, .btn-cancel-modal:active{
-    background: rgb(133, 35, 35);
+.btns-form > input:nth-child(2):active, .btn-confirm-modal:active{
+    background: rgb(35, 173, 35)
 }
 
 /* --modal tasksDetails-- */
@@ -291,31 +303,44 @@ textarea{
 .confirm-container-complete, .confirm-container-delete{
     background: #fff;
     padding: 20px;
+    border-radius: 10px;
 }
 .confirm-container-delete div, .confirm-container-complete div{
-    width: 50%;
+    /* width: 50%; */
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
+    gap: 60px;
     margin: auto;
+}
+.confirm-modal{
+    text-align: center;
+}
+.btn-confirm-modal{
+    width: auto;
 }
 
 .modal-animation{
-    animation: popup .3s ease-in-out;
+    animation: aparecer .3s ease-in-out;
 }
 
 /* --media-querys-- */
 
-@media(max-width:565px){
-    .add{
-        margin-right: 20px;
-    }
+@media(max-width:1100px){
     .h3-container{
         width: 100%;
     }
 }
+@media(max-width:800px){
+    .global-container{
+        max-width: 90%;
+    }
+    .tareas-container{
+        width: 90%;
+    }
+}
 
 /* --Animaciones-- */
-@keyframes popup {
+@keyframes aparecer {
     0% { transform: scale(0.8); opacity: 0; }
     100% { transform: scale(1); opacity: 1; }
 }

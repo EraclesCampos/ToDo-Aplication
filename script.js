@@ -1,5 +1,4 @@
 "use strict";
-//mostrar input agregar tarea
 const add = document.querySelector(".add").addEventListener("click",modalAddShow)
 const cancel = document.querySelector(".cancelForm").addEventListener("click",modalAddShow)
 const agregar = document.querySelector(".agregar")
@@ -15,9 +14,7 @@ const hours = String(ahora.getHours()).padStart(2, '0')
 const minutes = String(ahora.getMinutes()).padStart(2, '0')
 
 const fechaActual = `${year}-${month}-${day}T${hours}:${minutes}`
-console.log(fechaActual)
 document.getElementById('date-input').min = fechaActual
-
 
 let task = document.querySelector("#add-input")
 let description = document.querySelector("#descripcion-input")
@@ -37,6 +34,9 @@ function modalAddShow(){
     vaciarInputs(task,description,date)
     document.querySelector(".add-modal").classList.toggle("showed")
 }
+function modalEditShow(){
+    document.querySelector(".edit-modal").classList.toggle("showed")
+}
 function modalHistoryShow(){
     document.querySelector(".completed-modal").classList.toggle("showed")
 }
@@ -53,13 +53,18 @@ function mostrarInput(){
 function vaciarInputs(task,description,date){
     task.value = "";description.value = "";date.value = ""
 }
-function addTask(task,description,date){
+function generateId() {
+    return Date.now()
+}
+
+function addTask(task, description, date) {
     tasks.push({
+        id: generateId(),
         text: task,
         descripcion: description,
         fecha: date
     })
-    localStorage.setItem("task",JSON.stringify(tasks))
+    localStorage.setItem("task", JSON.stringify(tasks))
     modalAddShow()
     getTasks()
 }
@@ -78,16 +83,16 @@ function confirmDelete() {
 }
 async function delTasks(e,validate){
     if(validate){
-        let taskName = e.parentNode.parentNode.children[0].children[0].textContent
-        tasks = tasks.filter(obj => obj.text !== taskName)
+        let idTask = e.parentNode.parentNode.children[1].children[4].value
+        tasks = tasks.filter(task => task.id != idTask)
         localStorage.setItem("task", JSON.stringify(tasks))
         getTasks()
     }
     else{
         let res = await confirmDelete()
         if(res){
-            let taskName = e.parentNode.parentNode.children[0].children[0].textContent
-            tasks = tasks.filter(obj => obj.text !== taskName)
+            let idTask = e.parentNode.parentNode.children[1].children[4].value
+            tasks = tasks.filter(task => task.id != idTask)
             localStorage.setItem("task", JSON.stringify(tasks))
             getTasks()
         }
@@ -111,7 +116,7 @@ async function markCompleted(e){
     console.log(res)
     if(res){
         let taskName = e.parentNode.parentNode.children[0].children[0].textContent
-        console.log(tasksCompleted.length)
+        // console.log(tasksCompleted.length)
         if(tasksCompleted.length >= 10){
             tasksCompleted.splice(9,Infinity)
             localStorage.setItem("task-completed",JSON.stringify(tasksCompleted))
@@ -125,15 +130,51 @@ async function markCompleted(e){
     }
 
 }
+function editTask(e){
+    const idTask =  e.closest('.tarea').querySelector('input[type="hidden"]').value
+    console.log(tasks.findIndex(task => task.id == idTask))
+    // console.log(typeof(idTask) + idTask)
+    let index = tasks.findIndex(task => task.id == idTask)
+    let data = tasks.find(task => task.id == idTask)
+    // console.log(data)
+    const nameInput = document.getElementById("add-input-edit")
+    const descriptionInput = document.getElementById("descripcion-input-edit")
+    const dateInput = document.getElementById("date-input-edit")
+
+    nameInput.value = data.text
+    descriptionInput.value = data.descripcion
+    dateInput.value = data.fecha.replace("T", " ")
+
+    document.querySelector(".edit-modal").classList.toggle("showed")
+    document.querySelector(".edit-modal .cancelForm").addEventListener("click",modalEditShow, {once: true})
+    document.querySelector(".edit-form").addEventListener("submit", e=>{
+        e.preventDefault()
+        if(nameInput.value !== ""){
+            // console.log(tasks)
+            tasks[index] = {
+                id: idTask,
+                text: nameInput.value,
+                descripcion: descriptionInput.value,
+                fecha: dateInput.value.replace(" ", "T")
+            }
+            
+            localStorage.setItem("task", JSON.stringify(tasks))
+            modalEditShow()
+            vaciarInputs(nameInput,descriptionInput,dateInput)
+            getTasks()
+        }
+    }, {once: true})
+}
+
 function detailsTask(e){
     vaciarParrafos()
     showModalDetails()
-    let taskName = e.parentNode.parentNode.children[0].children[0].textContent
-    let data = tasks.find(obj => obj.text == taskName)
+    let idTask = e.parentNode.parentNode.children[1].children[4].value
+    let data = tasks.find(task => task.id == idTask)
 
     document.querySelector(".taskName").innerHTML = data.text
     document.querySelector(".taskDescription").innerHTML = data.descripcion || "Sin descripcion"
-    document.querySelector(".taskDate").innerHTML = data.fecha || "Sin fecha"
+    document.querySelector(".taskDate").innerHTML = data.fecha.replace("T", " ") || "Sin fecha"
     // console.log(parrafName)
 }
 function vaciarParrafos(){
@@ -162,8 +203,9 @@ function getTasks(){
                     <div class="check-delete">
                         <button class='check' onclick="markCompleted(this)"><img src='check.png'/></button>   
                         <button class="delete" onclick="delTasks(this,false)"><img src='delete.png'/></button>
-                        <button class='edit'><img src='edit.png'/></button>
+                        <button class='edit' onclick="editTask(this)"><img src='edit.png'/></button>
                         <button class="details" onclick="detailsTask(this)"><img src='info.png'/></button>
+                        <input type="hidden" value="${task.id}"/>
                     </div>
                 </div>`    
             }
